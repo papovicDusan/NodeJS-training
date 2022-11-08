@@ -22,6 +22,17 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  console.log(req);
+  next();
+});
+
+app.get("/user/users-country", (req, res, next) => {
+  if (parseInt(req.query.age) > 18) {
+    next();
+  }
+});
+
 app.use("/user", userRoutes);
 
 mongoose
@@ -29,7 +40,6 @@ mongoose
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clusternodejs.wid3nbe.mongodb.net/myapp?retryWrites=true&w=majority`
   )
   .then((result) => {
-    console.log("ZDRAVO");
     app.listen(8080);
   })
   .catch((err) => console.log(err));
