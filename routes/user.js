@@ -16,4 +16,6 @@ router.delete("/user/:userId", userController.deleteUser);
 
 router.get("/users-country", userController.getUsersCountry);
 
+router.get("/first-name", userController.getUsersFirstName);
+
 module.exports = router;

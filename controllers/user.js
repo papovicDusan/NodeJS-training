@@ -106,3 +106,13 @@ exports.getUsersCountry = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.getUsersFirstName = (req, res, next) => {
+  User.find()
+    .then((users) => {
+      res.render("users", { users: users });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

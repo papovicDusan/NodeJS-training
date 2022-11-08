@@ -1,10 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
 const userRoutes = require("./routes/user");
+
 require("dotenv").config();
+
 const app = express();
+
+app.set("view engine", "pug");
+app.set("views", "views");
 
 app.use(bodyParser.json()); // application/json
 
