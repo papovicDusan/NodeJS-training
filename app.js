@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
+const taskRoutes = require("./routes/task");
 
 require("dotenv").config();
 
@@ -10,7 +11,7 @@ const app = express();
 app.set("view engine", "pug");
 app.set("views", "views");
 
-app.use(bodyParser.json()); // application/json
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -27,13 +28,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/user/users-country", (req, res, next) => {
+app.get("/users/users-country", (req, res, next) => {
   if (parseInt(req.query.age) > 18) {
     next();
   }
 });
 
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
+app.use("/tasks", taskRoutes);
 
 mongoose
   .connect(
